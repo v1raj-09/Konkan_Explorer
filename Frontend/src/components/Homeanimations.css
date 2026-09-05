@@ -1,0 +1,51 @@
+/* Palm sway (HeroHeader) */
+@keyframes palmSway {
+  0%, 100% { transform: rotate(-2deg); }
+  50%      { transform: rotate(2.5deg); }
+}
+.palm { transform-origin: bottom center; animation: palmSway ease-in-out infinite; }
+
+/* Sunrise glow pulse (HeroHeader) */
+@keyframes sunPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.1); }
+}
+.sun-pulse { animation: sunPulse 6s ease-in-out infinite; }
+
+/* Rising bubbles (HeroHeader) */
+@keyframes bubbleRise {
+  0%   { transform: translateY(0); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(-160px); opacity: 0; }
+}
+.bubble { bottom: -20px; animation-name: bubbleRise; animation-timing-function: ease-in; animation-iteration-count: infinite; }
+
+/* Fade + rise entrance (HeroHeader text) */
+@keyframes fadeRise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-rise { animation: fadeRise 0.7s ease-out both; }
+
+/* Search dropdown pop-in (HeroHeader) */
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.97) translateY(-6px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.pop-in { animation: popIn 0.2s ease-out both; }
+
+/* Card entrance (TrendingSection) */
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.card-in { animation: cardIn 0.5s cubic-bezier(0.16,1,0.3,1) both; }
+
+/* Favorite heart pop (TrendingSection) */
+@keyframes heartPop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+.heart-pop { animation: heartPop 0.35s ease-out; }
