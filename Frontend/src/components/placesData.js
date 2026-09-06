@@ -28,7 +28,7 @@ const sindhudurgBeaches = [
   { name: "Vengurla Beach", dist: "Vengurla, Sindhudurg", imgs: ["Vengurla"] }
 ];
 
-// ऑटोमॅटिक मुख्य format मध्ये रूपांतर करणे
+
 export const placesData = [
   ...ratnagiriBeaches.map((b, index) => ({
     id: index + 1,

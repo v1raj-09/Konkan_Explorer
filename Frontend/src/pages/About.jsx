@@ -5,16 +5,13 @@ import Footer from '../components/Footer';
 export default function About() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0a0f0d] via-[#111814] to-[#050806] text-white font-sans flex flex-col justify-between relative overflow-hidden">
-      {/* Background Ambient Glows */}
       <div className="pointer-events-none absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-emerald-600/10 blur-[130px]" />
       <div className="pointer-events-none absolute bottom-1/4 -right-32 w-96 h-96 rounded-full bg-emerald-500/5 blur-[130px]" />
 
       <Navbar />
 
-      {/* Main Content */}
       <main className="flex-grow relative z-10 w-full pt-20">
         
-        {/* Header Hero */}
         <div className="bg-black/40 backdrop-blur-md border-b border-white/10 py-16 px-4 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/10 via-transparent to-emerald-500/10 pointer-events-none" />
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight relative z-10">
@@ -25,7 +22,6 @@ export default function About() {
           </p>
         </div>
 
-        {/* Content Section */}
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             

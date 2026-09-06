@@ -16,7 +16,6 @@ export default function HeroHeader() {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const searchRef = useRef(null);
 
-  // Close search dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (searchRef.current && !searchRef.current.contains(e.target)) {
@@ -36,11 +35,9 @@ export default function HeroHeader() {
 
   return (
     <header className="relative overflow-hidden bg-gradient-to-br from-[#0a0f0d] via-[#111814] to-[#050806] text-white group/hero min-h-screen flex flex-col justify-center pt-24 pb-12 lg:py-16">
-      {/* Balanced Ambient Glows */}
       <div className="pointer-events-none absolute -top-32 -right-32 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] rounded-full bg-emerald-600/15 blur-[140px] transition-transform duration-700 ease-out group-hover/hero:scale-110" />
       <div className="pointer-events-none absolute -bottom-32 -left-32 w-[250px] sm:w-[500px] h-[250px] sm:h-[500px] rounded-full bg-emerald-500/10 blur-[140px]" />
 
-      {/* Floating Background Bubbles */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         {BUBBLES.map(b => (
           <span
@@ -57,22 +54,17 @@ export default function HeroHeader() {
         ))}
       </div>
 
-      {/* Main Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col gap-10">
 
-        {/* TOP ROW */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
 
-          {/* LEFT COLUMN: Heading & Search Bar */}
           <div className="lg:col-span-7 text-left relative z-30 flex flex-col justify-center">
 
-            {/* Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/70 border border-emerald-500/30 text-emerald-400 text-xs sm:text-sm font-bold mb-4 w-fit backdrop-blur-xl shadow-xl">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
               <span className="tracking-wider uppercase">✨ Exclusive Coastal Trail</span>
             </div>
 
-            {/* Immersive Typographic Heading */}
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black mb-3 sm:mb-4 leading-[1.1] tracking-tight drop-shadow-lg">
               Journey Through <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-emerald-400 to-white drop-shadow">
@@ -80,12 +72,10 @@ export default function HeroHeader() {
               </span>
             </h1>
 
-            {/* Rich Subheading Description */}
             <p className="text-xs sm:text-base mb-6 text-gray-300 font-normal max-w-xl leading-relaxed tracking-wide">
               Immerse yourself in pristine emerald beaches, sacred ancient temples, vibrant cultural festivals, and breathtaking coastal horizons. Your unforgettable voyage starts here.
             </p>
 
-            {/* Interactive Search Bar */}
             <div ref={searchRef} className="relative max-w-xl w-full">
               <div className="relative flex items-center shadow-2xl rounded-full bg-black/85 backdrop-blur-2xl border border-white/20 transition-all duration-300 focus-within:ring-2 focus-within:ring-emerald-400 focus-within:border-emerald-400">
                 <span className="absolute left-4 text-emerald-400 text-sm sm:text-base">🔍</span>
@@ -105,7 +95,6 @@ export default function HeroHeader() {
                 </button>
               </div>
 
-              {/* Search Dropdown Results */}
               {isSearchFocused && search.trim() !== "" && (
                 <div className="absolute left-0 right-0 mt-2 bg-black/95 backdrop-blur-2xl rounded-2xl shadow-2xl z-50 max-h-56 overflow-y-auto text-left border border-white/15 text-white divide-y divide-white/10">
                   {filterPlaces.length > 0 ? (
@@ -138,22 +127,20 @@ export default function HeroHeader() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Bus Graphic with Headlight Beam Effects */}
           <div className="lg:col-span-5 relative flex flex-col items-center justify-center mt-6 lg:mt-0">
             <div className="relative w-full flex flex-col items-center group">
               <div className="absolute -inset-4 sm:-inset-8 bg-gradient-to-tr from-black via-emerald-950/40 to-black rounded-full blur-3xl pointer-events-none opacity-90 shadow-2xl" />
 
-              {/* Headlight illumination light cone effects */}
-              <div className="absolute bottom-6 left-1/4 w-40 sm:w-56 h-28 sm:h-36 bg-gradient-to-tr from-yellow-200/50 via-yellow-400/20 to-transparent blur-2xl pointer-events-none rotate-[-25deg] animate-pulse z-20" />
-              <div className="absolute bottom-6 right-1/4 w-40 sm:w-56 h-28 sm:h-36 bg-gradient-to-tl from-yellow-200/50 via-yellow-400/20 to-transparent blur-2xl pointer-events-none rotate-[25deg] animate-pulse z-20" />
+              <div className="absolute bottom-6 left-1/4 w-44 sm:w-64 h-32 sm:h-40 bg-gradient-to-tr from-yellow-200/60 via-yellow-400/25 to-transparent blur-2xl pointer-events-none rotate-[-25deg] animate-pulse z-20" />
+              <div className="absolute bottom-6 right-1/4 w-44 sm:w-64 h-32 sm:h-40 bg-gradient-to-tl from-yellow-200/60 via-yellow-400/25 to-transparent blur-2xl pointer-events-none rotate-[25deg] animate-pulse z-20" />
 
               <img
                 src="/redbus111.png"
                 alt="Konkan Explorer Bus"
-                className="w-full max-w-[280px] sm:max-w-xl lg:max-w-2xl h-[280px] sm:h-[420px] lg:h-[480px] object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.95)] group-hover:scale-105 transition-transform duration-700 relative z-10"
+                className="w-full max-w-[340px] sm:max-w-xl lg:max-w-3xl h-[340px] sm:h-[480px] lg:h-[560px] object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.98)] group-hover:scale-105 transition-transform duration-700 relative z-10 scale-110 sm:scale-125"
               />
-              <div className="mt-2 sm:mt-3 text-center relative z-10">
-                <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/80 border border-emerald-500/30 text-emerald-400 text-xs font-bold tracking-wide shadow-md backdrop-blur-md">
+              <div className="mt-4 sm:mt-6 text-center relative z-10">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/80 border border-emerald-500/30 text-emerald-400 text-xs sm:text-sm font-bold tracking-wide shadow-md backdrop-blur-md">
                   🚌 Konkan Explorer ST Bus
                 </span>
               </div>
@@ -162,10 +149,8 @@ export default function HeroHeader() {
 
         </div>
 
-        {/* BOTTOM SECTION: Popular Destinations Marquee & Festivals */}
         <div className="pt-6 border-t border-white/10 relative z-20 space-y-6">
 
-          {/* Popular Destinations Marquee */}
           <div className="space-y-2.5">
             <p className="text-xs font-bold tracking-widest text-emerald-400 uppercase flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
@@ -195,7 +180,6 @@ export default function HeroHeader() {
             </div>
           </div>
 
-          {/* Festivals Grid */}
           <div>
             <div className="flex justify-between items-center mb-3">
               <h2 className="text-base sm:text-xl font-bold text-white tracking-wide flex items-center gap-2">
@@ -231,7 +215,6 @@ export default function HeroHeader() {
 
       </div>
 
-      {/* Custom CSS Keyframes for Marquee */}
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0%); }

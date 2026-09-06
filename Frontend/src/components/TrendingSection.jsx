@@ -41,7 +41,6 @@ export default function TrendingSection() {
 
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-gradient-to-br from-[#0a0f0d] via-[#111814] to-[#050806] text-white relative overflow-hidden">
-      {/* Background Glows matching the rich dark charcoal/emerald aesthetic */}
       <div className="pointer-events-none absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-emerald-600/10 blur-[130px]" />
       <div className="pointer-events-none absolute bottom-1/4 -right-32 w-96 h-96 rounded-full bg-emerald-500/5 blur-[130px]" />
 
@@ -54,7 +53,6 @@ export default function TrendingSection() {
         </a>
       </div>
 
-      {/* Category Filter Pills */}
       <div className="flex flex-wrap gap-3 mb-10 relative z-10">
         {CATEGORIES.map(cat => (
           <button
@@ -77,11 +75,9 @@ export default function TrendingSection() {
         )}
       </div>
 
-      {/* Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
         {filteredTrending.map((place, i) => {
           const isFavorite = favorites.includes(place.id);
-          // Fallback check: handles both place.images array and place.image single string
           const placeImg = Array.isArray(place.images) ? place.images[0] : (place.image || 'https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=600&q=80');
 
           return (

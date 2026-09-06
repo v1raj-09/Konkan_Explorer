@@ -5,7 +5,6 @@ export default function FestivalsSection() {
   const [audioActive, setAudioActive] = useState(false);
   const audioRef = useRef(null);
 
-  // Initialize background ambient audio (replace src with your actual audio file or public asset)
   useEffect(() => {
     audioRef.current = new Audio('/konkan-ambient.mp3');
     audioRef.current.loop = true;
@@ -38,7 +37,6 @@ export default function FestivalsSection() {
     <section className="bg-[#0b1310] py-16 px-4 sm:px-6 lg:px-16 border-b border-emerald-950">
       <div className="max-w-7xl mx-auto">
         
-        {/* Section Header */}
         <div className="mb-10">
           <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-wide">
             Konkan Flavors & Festivals
@@ -48,7 +46,6 @@ export default function FestivalsSection() {
           </p>
         </div>
 
-        {/* Grid Container (3 Festivals + 1 Audio Card = 4 Columns on lg) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {FESTIVALS.map((festival) => (
             <div
@@ -76,7 +73,6 @@ export default function FestivalsSection() {
             </div>
           ))}
 
-          {/* Audio Toggle Vibe Card */}
           <div className="bg-[#13221b] border border-emerald-900/50 rounded-2xl p-6 shadow-xl flex flex-col justify-between group">
             <div>
               <div className="flex items-center gap-2 mb-2">

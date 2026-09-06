@@ -1,7 +1,7 @@
 export const staysData = [
   {
     id: 1,
-    placeName: "Ganpatipule Beach", // हे तुमच्या Explore पेजवरील जागेच्या नावाशी बरोबर जुळले पाहिजे
+    placeName: "Ganpatipule Beach",
     stays: [
       {
         name: "MTDC Resort Ganpatipule",

@@ -22,7 +22,6 @@ const DistrictNavDropdown = () => {
     }
   ];
 
-  // बाहेर क्लिक केल्यास ड्रॉपडाऊन बंद होण्यासाठी
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -47,7 +46,6 @@ const DistrictNavDropdown = () => {
 
   return (
     <div ref={dropdownRef} className="relative inline-block text-left">
-      {/* मुख्य Navbar बटन */}
       <button 
         onClick={() => {
           setIsOpen(!isOpen);
@@ -62,15 +60,13 @@ const DistrictNavDropdown = () => {
         </span>
       </button>
 
-      {/* मुख्य ड्रॉपडाऊन (Districts List) */}
       {isOpen && (
         <div className="absolute left-0 pt-2 w-56 z-50">
           <div className="bg-[#111a16] border border-emerald-900/40 rounded-2xl shadow-2xl py-2 backdrop-blur-md">
             {districtsData.map((item) => {
               const isDistrictActive = activeDistrict === item.name;
               return (
-                <div key={item.name} className="border-b border-emerald-900/20 last:border-none">
-                  {/* District Item */}
+                <div key={item.name} className="border-b border-emerald-900/20 last:border-none relative group">
                   <div 
                     onClick={() => {
                       setActiveDistrict(isDistrictActive ? null : item.name);
@@ -80,15 +76,14 @@ const DistrictNavDropdown = () => {
                     }`}
                   >
                     <span>{item.name}</span>
-                    <span className={`text-xs text-emerald-500/70 transition-transform ${isDistrictActive ? 'rotate-90' : ''}`}>
+                    <span className={`text-xs text-emerald-500/70 transition-transform ${isDistrictActive ? 'rotate-90 md:rotate-0' : ''}`}>
                       ▶
                     </span>
                   </div>
 
-                  {/* Categories List (मोबाईलवर जिल्ह्याखाली आणि मोठ्या स्क्रीनवर साईडला दिसेल) */}
                   {isDistrictActive && (
-                    <div className="bg-emerald-950/20 py-1 pl-4">
-                      <div className="px-3 py-1 text-xs font-bold text-emerald-400 uppercase tracking-wider">
+                    <div className="bg-emerald-950/20 py-1 pl-4 md:pl-0 md:absolute md:left-full md:top-0 md:w-48 md:bg-[#111a16] md:border md:border-emerald-900/40 md:rounded-2xl md:shadow-2xl md:p-2 z-50">
+                      <div className="px-3 py-1 text-xs font-bold text-emerald-400 uppercase tracking-wider md:hidden">
                         Select Vibe
                       </div>
                       {item.categories.map((cat) => (
@@ -114,5 +109,7 @@ const DistrictNavDropdown = () => {
     </div>
   );
 };
+
+export class DistrictNavDropdownComponent {}
 
 export default DistrictNavDropdown;

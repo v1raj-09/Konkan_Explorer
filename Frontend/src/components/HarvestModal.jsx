@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 
 export default function HarvestModal({ selectedItem, onClose }) {
-  // Handle ESC key press and body scroll locking
   useEffect(() => {
     if (!selectedItem) return;
 
@@ -31,7 +30,6 @@ export default function HarvestModal({ selectedItem, onClose }) {
         className="relative max-w-3xl w-full bg-[#111a16] border border-emerald-900/50 rounded-3xl overflow-hidden shadow-2xl flex flex-col transform transition-all scale-100"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
         <button
           onClick={onClose}
           aria-label="Close modal"
@@ -40,7 +38,6 @@ export default function HarvestModal({ selectedItem, onClose }) {
           ✕
         </button>
 
-        {/* Modal Image */}
         <div className="max-h-[45vh] bg-[#0b1310] flex items-center justify-center overflow-hidden relative p-4 border-b border-emerald-900/30">
           <img
             src={selectedItem.image}
@@ -50,7 +47,6 @@ export default function HarvestModal({ selectedItem, onClose }) {
           />
         </div>
 
-        {/* Modal Content */}
         <div className="p-6 sm:p-8 bg-[#111a16]">
           <div className="flex items-center gap-3 mb-2 flex-wrap">
             {selectedItem.badge && (

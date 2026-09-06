@@ -30,25 +30,22 @@ const DestinationFilterSection = () => {
   }, [selectedDistrict, selectedCategory]);
 
   return (
-    <section className="bg-[#0b1310] text-white py-12 px-4 sm:px-6 lg:px-16">
+    <section className="bg-[#0b1310] text-white py-8 sm:py-12 px-3 sm:px-6 lg:px-16">
       <div className="max-w-7xl mx-auto">
         
-        {/* Section Header */}
-        <div className="text-center mb-10">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-wide">
+        <div className="text-center mb-8 sm:mb-10">
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-wide">
             Explore Konkan By Region & Vibe
           </h2>
-          <p className="text-gray-400 mt-2 text-sm sm:text-base max-w-2xl mx-auto">
+          <p className="text-gray-400 mt-2 text-xs sm:text-base max-w-2xl mx-auto">
             Filter through pristine beaches, historic forts, and sacred spaces to plan your next getaway.
           </p>
         </div>
 
-        {/* Filter Controls Container */}
-        <div className="bg-[#13221b] p-6 sm:p-8 rounded-2xl border border-emerald-900/50 shadow-2xl mb-12 flex flex-col lg:flex-row gap-8 justify-between items-start lg:items-center">
+        <div className="bg-[#13221b] p-4 sm:p-8 rounded-2xl border border-emerald-900/50 shadow-2xl mb-8 sm:mb-12 flex flex-col lg:flex-row gap-6 lg:gap-8 justify-between items-start lg:items-center">
           
-          {/* District Selector */}
           <div className="w-full lg:w-1/2">
-            <label className="block text-sm font-semibold text-emerald-400 mb-3 tracking-wide uppercase">
+            <label className="block text-xs sm:text-sm font-semibold text-emerald-400 mb-2 sm:mb-3 tracking-wide uppercase">
               Select District
             </label>
             <div className="flex flex-wrap gap-2">
@@ -58,7 +55,7 @@ const DestinationFilterSection = () => {
                   <button
                     key={district}
                     onClick={() => setSelectedDistrict(district)}
-                    className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer ${
+                    className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer ${
                       isActive
                         ? 'bg-emerald-500 text-black shadow-lg shadow-emerald-500/25 font-semibold'
                         : 'bg-[#0b1310] text-gray-300 hover:bg-emerald-950/60 border border-emerald-900/40 hover:border-emerald-700/50'
@@ -71,9 +68,8 @@ const DestinationFilterSection = () => {
             </div>
           </div>
 
-          {/* Category Selector */}
           <div className="w-full lg:w-1/2">
-            <label className="block text-sm font-semibold text-emerald-400 mb-3 tracking-wide uppercase">
+            <label className="block text-xs sm:text-sm font-semibold text-emerald-400 mb-2 sm:mb-3 tracking-wide uppercase">
               Select Category
             </label>
             <div className="flex flex-wrap gap-2">
@@ -83,7 +79,7 @@ const DestinationFilterSection = () => {
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer ${
+                    className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer ${
                       isActive
                         ? 'bg-emerald-500 text-black shadow-lg shadow-emerald-500/25 font-semibold'
                         : 'bg-[#0b1310] text-gray-300 hover:bg-emerald-950/60 border border-emerald-900/40 hover:border-emerald-700/50'
@@ -98,17 +94,15 @@ const DestinationFilterSection = () => {
 
         </div>
 
-        {/* Destinations Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
           {loading ? (
-            // Skeleton Loader / Loading State
-            [...Array(3)].map((_, index) => (
-              <div key={index} className="bg-[#111a16] rounded-2xl overflow-hidden border border-emerald-900/30 animate-pulse h-96">
-                <div className="bg-emerald-950/30 h-56 w-full" />
-                <div className="p-5 space-y-3">
-                  <div className="h-5 bg-emerald-950/40 rounded w-3/4" />
-                  <div className="h-4 bg-emerald-950/40 rounded w-full" />
-                  <div className="h-4 bg-emerald-950/40 rounded w-1/2" />
+            [...Array(6)].map((_, index) => (
+              <div key={index} className="bg-[#111a16] rounded-xl sm:rounded-2xl overflow-hidden border border-emerald-900/30 animate-pulse h-64 sm:h-96">
+                <div className="bg-emerald-950/30 h-32 sm:h-56 w-full" />
+                <div className="p-3 sm:p-5 space-y-2 sm:space-y-3">
+                  <div className="h-4 sm:h-5 bg-emerald-950/40 rounded w-3/4" />
+                  <div className="h-3 sm:h-4 bg-emerald-950/40 rounded w-full" />
+                  <div className="h-3 sm:h-4 bg-emerald-950/40 rounded w-1/2" />
                 </div>
               </div>
             ))
@@ -116,37 +110,37 @@ const DestinationFilterSection = () => {
             destinations.map((dest) => (
               <div 
                 key={dest.id} 
-                className="bg-[#111a16] rounded-2xl overflow-hidden border border-emerald-900/30 hover:border-emerald-500/50 transition-all duration-300 group flex flex-col shadow-lg"
+                className="bg-[#111a16] rounded-xl sm:rounded-2xl overflow-hidden border border-emerald-900/30 hover:border-emerald-500/50 transition-all duration-300 group flex flex-col shadow-lg"
               >
-                <div className="relative h-56 overflow-hidden bg-emerald-950/20">
+                <div className="relative h-36 sm:h-48 lg:h-56 overflow-hidden bg-emerald-950/20">
                   <img 
                     src={dest.images || 'https://via.placeholder.com/400x300'} 
                     alt={dest.name} 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
-                  <span className="absolute top-3 left-3 bg-black/70 backdrop-blur-md text-emerald-400 text-xs font-semibold px-3 py-1 rounded-full border border-emerald-500/30">
+                  <span className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-black/70 backdrop-blur-md text-emerald-400 text-[10px] sm:text-xs font-semibold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full border border-emerald-500/30">
                     {dest.category}
                   </span>
                 </div>
                 
-                <div className="p-5 flex flex-col flex-grow justify-between">
+                <div className="p-3 sm:p-5 flex flex-col flex-grow justify-between">
                   <div>
-                    <div className="flex justify-between items-center mb-2">
-                      <h3 className="text-xl font-semibold text-white group-hover:text-emerald-400 transition-colors">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-1 sm:mb-2 gap-1">
+                      <h3 className="text-sm sm:text-xl font-semibold text-white group-hover:text-emerald-400 transition-colors line-clamp-1">
                         {dest.name}
                       </h3>
-                      <span className="text-yellow-400 text-sm font-medium flex items-center gap-1">
+                      <span className="text-yellow-400 text-xs sm:text-sm font-medium flex items-center gap-1">
                         ★ {dest.ratings}
                       </span>
                     </div>
-                    <p className="text-gray-400 text-sm line-clamp-2 mb-4 leading-relaxed">
+                    <p className="text-gray-400 text-xs sm:text-sm line-clamp-2 mb-3 sm:mb-4 leading-relaxed">
                       {dest.description}
                     </p>
                   </div>
                   
-                  <div className="flex justify-between items-center text-xs text-gray-400 border-t border-emerald-900/30 pt-3 mt-auto">
-                    <span className="truncate max-w-[60%]">📍 {dest.location}</span>
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center text-[10px] sm:text-xs text-gray-400 border-t border-emerald-900/30 pt-2 sm:pt-3 mt-auto gap-2">
+                    <span className="truncate max-w-full sm:max-w-[60%]">📍 {dest.location}</span>
                     <button className="text-emerald-400 hover:text-emerald-300 hover:underline font-medium cursor-pointer transition-colors">
                       View Details &rarr;
                     </button>
@@ -159,7 +153,7 @@ const DestinationFilterSection = () => {
               <p className="text-lg text-gray-400">No destinations found matching your selected filters.</p>
               <button 
                 onClick={() => { setSelectedDistrict('All'); setSelectedCategory('All'); }}
-                className="mt-4 px-5 py-2 bg-emerald-500 text-black font-semibold rounded-xl text-sm hover:bg-emerald-400 transition-colors"
+                className="mt-4 px-5 py-2 bg-emerald-500 text-black font-semibold rounded-xl text-sm hover:bg-emerald-400 transition-colors cursor-pointer"
               >
                 Reset Filters
               </button>

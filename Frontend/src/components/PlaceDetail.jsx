@@ -5,7 +5,6 @@ export default function PlaceDetail() {
   const { placeName } = useParams();
   const navigate = useNavigate();
 
-  // Clean up the URL parameter name for display (e.g., "ganpatipule-beach" -> "Ganpatipule Beach")
   const formattedName = placeName
     ? placeName.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
     : 'Konkan Destination';
@@ -14,7 +13,6 @@ export default function PlaceDetail() {
     <div className="min-h-screen bg-gradient-to-br from-[#0a0f0d] via-[#111814] to-[#050806] text-white pt-28 pb-16 px-4 sm:px-6">
       <div className="max-w-4xl mx-auto bg-[#111a16] border border-emerald-900/50 shadow-2xl rounded-3xl overflow-hidden p-6 sm:p-10">
         
-        {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
           className="mb-6 inline-flex items-center gap-2 text-xs font-semibold text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3.5 py-2 rounded-xl hover:bg-emerald-900/40 transition-colors cursor-pointer"
@@ -22,7 +20,6 @@ export default function PlaceDetail() {
           ← Back to Explorer
         </button>
 
-        {/* Title & Badge */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
           <div>
             <span className="text-xs uppercase tracking-widest text-emerald-400 font-semibold bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-500/30">
@@ -39,7 +36,6 @@ export default function PlaceDetail() {
           </div>
         </div>
 
-        {/* Image Placeholder Banner */}
         <div className="relative h-64 sm:h-80 rounded-2xl overflow-hidden mb-8 border border-emerald-900/40 shadow-inner group">
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
           <img
@@ -52,12 +48,10 @@ export default function PlaceDetail() {
           </div>
         </div>
 
-        {/* Description */}
         <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-8">
           Discover the majestic beauty, rich history, and serene landscapes of {formattedName}. Immerse yourself in authentic local coastal culture, pristine emerald shorelines, and breathtaking sunsets. Plan your perfect Konkan getaway with our exclusive stay packages.
         </p>
 
-        {/* Action Button */}
         <div className="flex justify-start">
           <button 
             onClick={() => navigate(`/book/${placeName}`)}

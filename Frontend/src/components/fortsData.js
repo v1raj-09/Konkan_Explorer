@@ -1,4 +1,4 @@
-// १. रत्नागिरी मधील किल्ले
+
 const ratnagiriForts = [
   { name: "Ambolgad Fort", reg: "Ratnagiri", img: "Ambolgad", desc: "A small coastal fort situated on a rocky cliff overlooking the Arabian Sea.", builtBy: "Maratha Empire" },
   { name: "Fattegad Fort", reg: "Ratnagiri", img: "fattegad", desc: "A historic sea fortification known for its strategic coastal vantage point.", builtBy: "Maratha Empire" },
@@ -10,7 +10,7 @@ const ratnagiriForts = [
   { name: "Suvarnadurg", reg: "Dapoli", img: "suvarngad", desc: "A formidable sea fort built on a small island off the coast, historically used as a naval base.", builtBy: "Adil Shahi Dynasty" }
 ];
 
-// २. सिंधुदुर्ग मधील किल्ले (तुमच्या फोल्डरमधील इमेज फाईल्सनुसार)
+
 const sindhudurgForts = [
   { name: "Padmadurg Fort", reg: "Sindhudurg", img: "padmdurg", desc: "Historic island fortification in Malvan region.", builtBy: "Maratha Empire" },
   { name: "Sindhudurg Fort", reg: "Sindhudurg", img: "sindudurg", desc: "Magnificent sea fort built by Chhatrapati Shivaji Maharaj on Kurte island.", builtBy: "Maratha Empire" },
@@ -18,7 +18,7 @@ const sindhudurgForts = [
   { name: "Yashwantgad Fort (Redi)", reg: "Sindhudurg", img: "yashwantgad", desc: "A historic coastal fort covered with dense greenery and nature near Redi.", builtBy: "Maratha Empire" }
 ];
 
-// ३. मुख्य Export (मर्च करून लहान फॉरमॅटमध्ये तयार करणे)
+
 export const fortsData = [
   ...ratnagiriForts.map((f, index) => ({
     id: index + 1,
