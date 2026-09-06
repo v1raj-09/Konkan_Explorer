@@ -65,9 +65,9 @@ function Navbar() {
       className="fixed top-0 inset-x-0 z-50 w-full"
     >
       <div
-        className={`w-full transition-all duration-300 border-b border-emerald-500/20 backdrop-blur-xl px-4 sm:px-8 py-3.5 flex items-center justify-between shadow-2xl ${
+        className={`w-full transition-all duration-300 border-b border-emerald-500/20 backdrop-blur-xl px-3 sm:px-8 py-3 flex items-center justify-between shadow-2xl ${
           scrolled
-            ? 'bg-black/90 py-2.5 border-emerald-500/30'
+            ? 'bg-black/90 py-2 border-emerald-500/30'
             : 'bg-[#020E08]/90'
         }`}
       >
@@ -75,23 +75,26 @@ function Navbar() {
         {/* Logo */}
         <Link
           to="/"
-          className="flex items-center gap-2.5 shrink-0 group"
+          className="flex items-center gap-2 shrink-0 group"
         >
           <img
             src="/redbus1.png"
             alt="Konkan Explorer Logo"
-            className="h-8 sm:h-9 w-auto object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300"
+            className="h-7 sm:h-9 w-auto object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300"
           />
 
-          <span className="text-xl font-black text-white tracking-tight">
+          <span className="text-lg sm:text-xl font-black text-white tracking-tight">
             Konkan
-            <span className="text-yellow-400 font-light ml-1">
+            <span className="text-yellow-400 font-light ml-0.5 sm:ml-1">
               Explorer
             </span>
           </span>
         </Link>
 
-        <DistrictNavDropdown />
+        {/* Desktop District Dropdown (मोबाईलवर हाइड करून मेनूमध्ये टाकता येईल किंवा कॉम्पॅक्ट ठेवू शकता) */}
+        <div className="hidden md:block">
+          <DistrictNavDropdown />
+        </div>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center space-x-1 bg-black/40 border border-white/10 px-3 py-1 rounded-full">
@@ -109,8 +112,7 @@ function Navbar() {
         {/* Desktop Action Buttons */}
         <div className="hidden lg:flex items-center space-x-3 shrink-0">
 
-          {/* Show Login/Register only when NOT logged in */}
-          {!isLoggedIn && (
+          {!isLoggedIn ? (
             <>
               <Link
                 to="/login"
@@ -126,10 +128,7 @@ function Navbar() {
                 Register
               </Link>
             </>
-          )}
-
-          {/* Show Logout when logged in */}
-          {isLoggedIn && (
+          ) : (
             <button
               onClick={handleLogout}
               className="text-xs font-semibold text-gray-300 hover:text-red-400 px-3 py-2 transition-colors cursor-pointer"
@@ -149,8 +148,11 @@ function Navbar() {
 
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <div className="lg:hidden flex items-center">
+        {/* Mobile Right Section (District Dropdown + Toggle Menu) */}
+        <div className="flex md:hidden items-center gap-1.5">
+          <div className="scale-90 origin-right">
+            <DistrictNavDropdown />
+          </div>
           <button
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle Navigation Menu"
@@ -163,13 +165,29 @@ function Navbar() {
             )}
           </button>
         </div>
+
+        {/* Tablet Menu Toggle (md ते lg स्क्रीनसाठी) */}
+        <div className="hidden md:flex lg:hidden items-center">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle Navigation Menu"
+            className="p-2 rounded-full bg-black/60 border border-white/20 text-yellow-400 hover:bg-black transition-colors focus:outline-none cursor-pointer"
+          >
+            {isOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
+          </button>
+        </div>
+
       </div>
 
-      {/* Mobile Dropdown */}
+      {/* Mobile & Tablet Dropdown Menu */}
       <div
         className={`absolute top-full inset-x-0 lg:hidden overflow-hidden transition-all duration-300 ease-in-out bg-black/95 backdrop-blur-2xl border-b border-emerald-500/30 shadow-2xl ${
           isOpen
-            ? 'max-h-[500px] opacity-100 p-5'
+            ? 'max-h-[600px] opacity-100 p-5'
             : 'max-h-0 opacity-0 py-0 px-5 pointer-events-none'
         }`}
       >
@@ -224,10 +242,11 @@ function Navbar() {
           {/* Add Spot */}
           <Link
             to="/addSpot"
-            className="w-full mt-1 px-3 py-2.5 rounded-xl text-center bg-white text-black font-bold text-xs shadow-md"
+            className="w-full mt-1 px-3 py-2.5 rounded-xl text-center bg-white text-black font-bold text-xs shadow-md flex items-center justify-center gap-1.5"
             onClick={() => setIsOpen(false)}
           >
-            + Add a Spot
+            <Leaf className="h-3.5 w-3.5 text-emerald-600" />
+            <span>+ Add a Spot</span>
           </Link>
 
         </div>
