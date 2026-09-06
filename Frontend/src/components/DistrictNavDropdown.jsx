@@ -22,7 +22,7 @@ const DistrictNavDropdown = () => {
     }
   ];
 
-  // बाहेर क्लिक केल्यास सर्व ड्रॉपडाऊन बंद होण्यासाठी
+  // बाहेर क्लिक केल्यास ड्रॉपडाऊन बंद होण्यासाठी
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -46,15 +46,12 @@ const DistrictNavDropdown = () => {
   };
 
   return (
-    <div 
-      ref={dropdownRef}
-      className="relative inline-block text-left"
-    >
-      {/* मुख्य Navbar बटन (Click ने उघडेल) */}
+    <div ref={dropdownRef} className="relative inline-block text-left">
+      {/* मुख्य Navbar बटन */}
       <button 
         onClick={() => {
           setIsOpen(!isOpen);
-          if (isOpen) setActiveDistrict(null); // बंद करताना सब-मेनू पण रिसेट करा
+          if (isOpen) setActiveDistrict(null);
         }}
         aria-expanded={isOpen}
         className="text-gray-300 hover:text-emerald-400 font-medium px-3 py-2 rounded-lg text-sm transition-colors duration-200 flex items-center gap-1.5 focus:outline-none focus:ring-1 focus:ring-emerald-500/50 cursor-pointer"
@@ -72,8 +69,8 @@ const DistrictNavDropdown = () => {
             {districtsData.map((item) => {
               const isDistrictActive = activeDistrict === item.name;
               return (
-                <div key={item.name} className="relative">
-                  {/* District Item (Click केल्यावर Categories दिसतील) */}
+                <div key={item.name} className="border-b border-emerald-900/20 last:border-none">
+                  {/* District Item */}
                   <div 
                     onClick={() => {
                       setActiveDistrict(isDistrictActive ? null : item.name);
@@ -88,26 +85,24 @@ const DistrictNavDropdown = () => {
                     </span>
                   </div>
 
-                  {/* Sub-dropdown (Categories List) */}
+                  {/* Categories List (मोबाईलवर जिल्ह्याखाली आणि मोठ्या स्क्रीनवर साईडला दिसेल) */}
                   {isDistrictActive && (
-                    <div className="absolute left-full top-0 pl-1 w-48 z-50">
-                      <div className="bg-[#111a16] border border-emerald-900/40 rounded-2xl shadow-2xl py-2">
-                        <div className="px-4 py-1.5 text-xs font-bold text-emerald-400 uppercase tracking-wider border-b border-emerald-900/30 mb-1">
-                          Select Vibe
-                        </div>
-                        {item.categories.map((cat) => (
-                          <div
-                            key={cat}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleSelect(item.name, cat);
-                            }}
-                            className="px-4 py-2 text-sm text-gray-300 hover:bg-emerald-500 hover:text-black font-medium cursor-pointer transition-colors duration-150 first:rounded-t-lg last:rounded-b-lg"
-                          >
-                            {cat}
-                          </div>
-                        ))}
+                    <div className="bg-emerald-950/20 py-1 pl-4">
+                      <div className="px-3 py-1 text-xs font-bold text-emerald-400 uppercase tracking-wider">
+                        Select Vibe
                       </div>
+                      {item.categories.map((cat) => (
+                        <div
+                          key={cat}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleSelect(item.name, cat);
+                          }}
+                          className="px-4 py-2 text-sm text-gray-300 hover:bg-emerald-500 hover:text-black font-medium cursor-pointer transition-colors duration-150 rounded-lg my-0.5"
+                        >
+                          {cat}
+                        </div>
+                      ))}
                     </div>
                   )}
                 </div>
