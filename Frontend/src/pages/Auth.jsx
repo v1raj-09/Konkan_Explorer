@@ -47,12 +47,10 @@ export default function Auth() {
           );
         }
 
-        // जर बॅकएंडमधून token येत असेल तर तोही सेव्ह करा
         if (res.data.token) {
           localStorage.setItem("token", res.data.token);
         }
 
-        // 👉 Navbar ला लगेच अपडेट करण्यासाठी इव्हेंट ट्रिगर केला आहे
         window.dispatchEvent(new Event("userLogin"));
 
         alert(res.data.message || "Login successful!");
@@ -101,22 +99,25 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0a0f0d] via-[#111814] to-[#050806] text-white font-sans flex flex-col justify-between relative overflow-hidden selection:bg-emerald-500 selection:text-black pt-16">
+    // ✨ इथे min-h-screen आणि flex-col काढून flex आणि overflow-y-auto व्यवस्थित सेट केले आहे जेणेकरून फुटर खाली दिसेल आणि फॉर्म लपणार नाही
+    <div className="w-full min-h-screen bg-gradient-to-br from-[#0a0f0d] via-[#111814] to-[#050806] text-white font-sans flex flex-col justify-between relative selection:bg-emerald-500 selection:text-black pt-20">
+      
+      {/* Background Ambient Glows */}
       <div className="pointer-events-none absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-emerald-600/10 blur-[130px]" />
       <div className="pointer-events-none absolute bottom-1/4 -right-32 w-96 h-96 rounded-full bg-emerald-500/5 blur-[130px]" />
 
+      {/* Navbar */}
       <Navbar />
 
-      <div className="flex-grow flex items-center justify-center px-4 py-12 relative z-10 w-full">
-        <div className="relative w-full max-w-3xl bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_10px_30px_rgba(16,185,129,0.15)] overflow-hidden min-h-[560px] md:min-h-[520px]">
+      <div className="flex-grow flex items-center justify-center px-4 py-8 relative z-10 w-full">
+        <div className="relative w-full max-w-3xl bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_10px_30px_rgba(16,185,129,0.15)] overflow-hidden min-h-[520px] flex flex-col md:flex-row">
           
-          {/* FORM PANEL */}
+          {/* ================= FORM PANEL ================= */}
           <div
-            className={`relative md:absolute md:inset-y-0 md:left-0 w-full md:w-1/2 flex items-center justify-center p-8 sm:p-12 transition-transform duration-700 ease-in-out bg-black/40 backdrop-blur-md ${
-              isLogin
-                ? "md:translate-x-0"
-                : "md:translate-x-full"
+            className={`w-full md:w-1/2 flex items-center justify-center p-8 sm:p-12 transition-all duration-700 ease-in-out bg-black/40 backdrop-blur-md order-2 ${
+              isLogin ? "md:order-1" : "md:order-2 md:translate-x-full"
             }`}
+            style={{ position: isLogin ? 'relative' : 'absolute', height: '100%', top: 0, left: 0 }}
           >
             <div className="w-full max-w-sm">
               <h2 className="text-3xl font-serif font-light text-white text-center mb-6">
@@ -215,13 +216,12 @@ export default function Auth() {
             </div>
           </div>
 
-          {/* GRADIENT SIDE PANEL */}
+          {/* ================= GRADIENT SIDE PANEL ================= */}
           <div
-            className={`relative md:absolute md:inset-y-0 md:left-1/2 w-full md:w-1/2 flex items-center justify-center text-center p-8 sm:p-12 bg-gradient-to-br from-[#0D3B3E]/80 via-[#123B3E]/60 to-black/90 text-white transition-transform duration-700 ease-in-out border-l border-white/10 ${
-              isLogin
-                ? "md:translate-x-0"
-                : "md:-translate-x-full"
+            className={`w-full md:w-1/2 flex items-center justify-center text-center p-8 sm:p-12 bg-gradient-to-br from-[#0D3B3E]/80 via-[#123B3E]/60 to-black/90 text-white transition-all duration-700 ease-in-out border-l border-white/10 order-1 ${
+              isLogin ? "md:order-2" : "md:order-1 md:-translate-x-full"
             }`}
+            style={{ position: isLogin ? 'relative' : 'absolute', height: '100%', top: 0, right: 0 }}
           >
             <div className="max-w-xs">
               <h3 className="text-2xl font-serif font-light mb-3 text-white">
@@ -245,6 +245,7 @@ export default function Auth() {
         </div>
       </div>
 
+      {/* Footer */}
       <Footer />
     </div>
   );
