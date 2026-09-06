@@ -1,22 +1,30 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import axios from 'axios';
+
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import axios from "axios";
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
+    name: "",
+    email: "",
+    password: "",
   });
 
-  const API_URL = import.meta.env.VITE_API_URL;
+  // API URL
+  // Render production URL is used as fallback
+  const API_URL =
+    import.meta.env.VITE_API_URL ||
+    "https://konkan-explorer.onrender.com";
+
   const navigate = useNavigate();
 
-  // Handle input changes
+  // =========================
+  // HANDLE INPUT CHANGE
+  // =========================
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -26,7 +34,9 @@ export default function Auth() {
     }));
   };
 
-  // Handle Login / Register
+  // =========================
+  // HANDLE LOGIN / REGISTER
+  // =========================
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -43,23 +53,18 @@ export default function Auth() {
           }
         );
 
-        // Save JWT token
-        if (res.data.token) {
-          localStorage.setItem('token', res.data.token);
-        }
-
-        // Save user data if backend sends it
+        // Save user data
         if (res.data.user) {
           localStorage.setItem(
-            'user',
+            "user",
             JSON.stringify(res.data.user)
           );
         }
 
-        alert(res.data.message || 'Login successful!');
+        alert(res.data.message || "Login successful!");
 
-        // Redirect to Home
-        navigate('/');
+        // Redirect to home
+        navigate("/");
       }
 
       // =========================
@@ -68,28 +73,53 @@ export default function Auth() {
       else {
         const res = await axios.post(
           `${API_URL}/api/auth/register`,
-          formData
+          {
+            name: formData.name,
+            email: formData.email,
+            password: formData.password,
+          }
         );
 
-        alert(res.data.message || 'Registration successful!');
+        alert(
+          res.data.message ||
+            "Registration successful!"
+        );
 
         // Switch to Login
         setIsLogin(true);
 
         // Clear form
         setFormData({
-          name: '',
-          email: '',
-          password: '',
+          name: "",
+          email: "",
+          password: "",
         });
       }
     } catch (err) {
-      console.log(err);
+      console.error("Authentication Error:", err);
 
-      alert(
-        err.response?.data?.message ||
-          'An error occurred during authentication.'
-      );
+      // Backend error message
+      if (err.response) {
+        alert(
+          err.response.data?.message ||
+            "Authentication failed."
+        );
+      }
+
+      // Server/network error
+      else if (err.request) {
+        alert(
+          "Unable to connect to the server. Please try again."
+        );
+      }
+
+      // Other error
+      else {
+        alert(
+          err.message ||
+            "An error occurred during authentication."
+        );
+      }
     }
   };
 
@@ -113,15 +143,17 @@ export default function Auth() {
           <div
             className={`relative md:absolute md:inset-y-0 md:left-0 w-full md:w-1/2 flex items-center justify-center p-8 sm:p-12 transition-transform duration-700 ease-in-out bg-black/40 backdrop-blur-md ${
               isLogin
-                ? 'md:translate-x-0'
-                : 'md:translate-x-full'
+                ? "md:translate-x-0"
+                : "md:translate-x-full"
             }`}
           >
 
             <div className="w-full max-w-sm">
 
               <h2 className="text-3xl font-serif font-light text-white text-center mb-6">
-                {isLogin ? 'Sign In' : 'Create Account'}
+                {isLogin
+                  ? "Sign In"
+                  : "Create Account"}
               </h2>
 
               {/* Social Icons */}
@@ -181,8 +213,8 @@ export default function Auth() {
 
               <p className="text-center text-xs text-gray-400 mb-6 uppercase tracking-wider">
                 {isLogin
-                  ? 'or use your account'
-                  : 'or use email for registration'}
+                  ? "or use your account"
+                  : "or use email for registration"}
               </p>
 
               {/* Form */}
@@ -191,7 +223,7 @@ export default function Auth() {
                 onSubmit={handleSubmit}
               >
 
-                {/* Name - Only Register */}
+                {/* Name - Register only */}
                 {!isLogin && (
                   <input
                     type="text"
@@ -245,7 +277,9 @@ export default function Auth() {
                     type="submit"
                     className="px-8 py-3 rounded-full text-xs font-bold tracking-widest text-black bg-emerald-400 hover:bg-emerald-300 shadow-lg transition uppercase cursor-pointer"
                   >
-                    {isLogin ? 'Sign In' : 'Sign Up'}
+                    {isLogin
+                      ? "Sign In"
+                      : "Sign Up"}
                   </button>
 
                 </div>
@@ -273,8 +307,8 @@ export default function Auth() {
           <div
             className={`relative md:absolute md:inset-y-0 md:left-1/2 w-full md:w-1/2 flex items-center justify-center text-center p-8 sm:p-12 bg-gradient-to-br from-[#0D3B3E]/80 via-[#123B3E]/60 to-black/90 text-white transition-transform duration-700 ease-in-out border-l border-white/10 ${
               isLogin
-                ? 'md:translate-x-0'
-                : 'md:-translate-x-full'
+                ? "md:translate-x-0"
+                : "md:-translate-x-full"
             }`}
           >
 
@@ -282,14 +316,14 @@ export default function Auth() {
 
               <h3 className="text-2xl font-serif font-light mb-3 text-white">
                 {isLogin
-                  ? 'Welcome Back Traveler!'
-                  : 'Explore Konkan Heritage'}
+                  ? "Welcome Back Traveler!"
+                  : "Explore Konkan Heritage"}
               </h3>
 
               <p className="text-sm text-gray-300 font-light mb-8 leading-relaxed">
                 {isLogin
-                  ? 'Begin your journey across pristine coastlines and historic forts by signing in.'
-                  : 'Create your account to save your favorite destinations and plan trips seamlessly.'}
+                  ? "Begin your journey across pristine coastlines and historic forts by signing in."
+                  : "Create your account to save your favorite destinations and plan trips seamlessly."}
               </p>
 
               <button
@@ -297,7 +331,9 @@ export default function Auth() {
                 onClick={() => setIsLogin(!isLogin)}
                 className="px-8 py-3 rounded-full text-xs font-semibold tracking-widest border border-white/20 text-white hover:bg-emerald-400 hover:text-black hover:border-emerald-400 transition uppercase cursor-pointer"
               >
-                {isLogin ? 'Sign Up' : 'Sign In'}
+                {isLogin
+                  ? "Sign Up"
+                  : "Sign In"}
               </button>
 
             </div>
@@ -312,4 +348,5 @@ export default function Auth() {
 
     </div>
   );
+
 }
